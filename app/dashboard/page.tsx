@@ -1,0 +1,11 @@
+import Link from "next/link";
+const bills=[["10 Okt 2026","Rp 500.000","Belum dibayar"],["10 Nov 2026","Rp 500.000","Terjadwal"],["10 Des 2026","Rp 500.000","Terjadwal"]];
+export default function Dashboard(){
+ return <main className="mx-auto max-w-6xl px-4 py-10 md:py-16">
+  <div className="flex flex-wrap items-end justify-between gap-4"><div><p className="text-sm font-bold text-brand-600">DASHBOARD</p><h1 className="text-3xl font-black">Halo, Pengguna Demo</h1><p className="mt-1 text-slate-500">Ringkasan pengajuan dan tagihan.</p></div><Link href="/ajukan" className="btn-primary">Ajukan Baru</Link></div>
+  <div className="mt-8 grid gap-4 md:grid-cols-3"><Stat title="Status Pengajuan" value="Menunggu Verifikasi"/><Stat title="Pinjaman Aktif" value="Rp 3.000.000"/><Stat title="Tagihan Berikutnya" value="10 Okt 2026"/></div>
+  <div className="mt-8 grid gap-6 lg:grid-cols-2"><section className="card p-6"><h2 className="text-xl font-black">Riwayat Pinjaman</h2><div className="mt-5 overflow-x-auto"><table className="w-full text-left text-sm"><thead><tr className="border-b"><th className="py-3">Tanggal</th><th>Pokok</th><th>Status</th></tr></thead><tbody><tr className="border-b"><td className="py-3">10 Sep 2026</td><td>Rp 3.000.000</td><td><span className="rounded-full bg-amber-50 px-3 py-1 text-xs font-bold text-amber-700">Berjalan</span></td></tr><tr><td className="py-3">02 Jun 2026</td><td>Rp 2.000.000</td><td><span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-bold text-emerald-700">Lunas</span></td></tr></tbody></table></div></section>
+  <section className="card p-6"><h2 className="text-xl font-black">Jadwal Tagihan</h2><div className="mt-5 space-y-3">{bills.map(([date,amount,status])=><div key={date} className="flex items-center justify-between rounded-2xl bg-slate-50 p-4"><div><b>{date}</b><p className="text-sm text-slate-500">{status}</p></div><b>{amount}</b></div>)}</div></section></div>
+ </main>
+}
+function Stat({title,value}:{title:string,value:string}){return <div className="card p-6"><p className="text-sm text-slate-500">{title}</p><p className="mt-2 text-xl font-black text-brand-700">{value}</p></div>}
